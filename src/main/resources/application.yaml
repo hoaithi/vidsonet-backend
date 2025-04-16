@@ -1,0 +1,36 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /vidsonet
+
+spring:
+  datasource:
+    url: "jdbc:mysql://localhost:3306/vidsonet"
+    driverClassName: "com.mysql.cj.jdbc.Driver"
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  servlet:
+    multipart:
+      max-file-size: 10000MB
+      max-request-size: 10000MB
+app:
+  jwt:
+    secret: "YYzrYVGsu1A65dvMxYP1W+d2LcC7fAFTLoa+5kT9rj5dDNL77BPUyEsMKbGNN2G7"
+    expiration: 86400000 #ms
+    refresh-expiration: 604800000 #ms
+  file:
+    upload-dir: ./uploads
+
+
+
+#file:
+#  upload-dir: ./uploads
+#jwt:
+#  signerKey: "YYzrYVGsu1A65dvMxYP1W+d2LcC7fAFTLoa+5kT9rj5dDNL77BPUyEsMKbGNN2G7"
+#channel:
+#  profile-image-url: "C:\\Users\\PC\\OneDrive\\Pictures\\kevin-sanjaya3.jpg"
+#  banner-image-url: "C:\\Users\\PC\\OneDrive\\Pictures\\banner1.jpg"
