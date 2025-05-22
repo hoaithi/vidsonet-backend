@@ -10,6 +10,7 @@ import com.hoaithidev.vidsonet_backend.service.VideoService;
 import com.hoaithidev.vidsonet_backend.util.CurrentUser;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -25,6 +26,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/videos")
 @RequiredArgsConstructor
+@Slf4j
 public class VideoController {
 
     private final VideoService videoService;
@@ -35,6 +37,8 @@ public class VideoController {
     public ResponseEntity<ApiResponse<VideoDTO>> uploadVideo(
             @ModelAttribute VideoUploadDTO uploadDTO,
             @CurrentUser Long userId) {
+        log.info("Uploading video");
+        log.info("UploadDTO: {}", uploadDTO.getIsPremium());
 
         VideoDTO uploadedVideo = videoService.uploadVideo(userId, uploadDTO);
 

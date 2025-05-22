@@ -58,7 +58,9 @@ public enum ErrorCode {
     PAYMENT_FAILED(8000, "Payment failed", HttpStatus.BAD_REQUEST),
     INVALID_PAYMENT_DATA(8001, "Invalid payment data", HttpStatus.BAD_REQUEST),
     MEMBERSHIP_NOT_FOUND(8002, "Membership not found", HttpStatus.NOT_FOUND),
-    ALREADY_MEMBER(8003, "User is already a member", HttpStatus.CONFLICT);
+    ALREADY_MEMBER(8003, "User is already a member", HttpStatus.CONFLICT),
+    IS_NOT_ACTIVE(8004, "MembershipTier is not active", HttpStatus.BAD_REQUEST),;
+
 
     private final int code;
     private final String message;

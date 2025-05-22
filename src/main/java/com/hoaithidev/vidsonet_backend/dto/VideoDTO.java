@@ -1,6 +1,7 @@
 package com.hoaithidev.vidsonet_backend.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,6 +25,7 @@ public class VideoDTO {
     private Long viewCount;
     private Long likeCount;
     private Long dislikeCount;
+    @JsonProperty("isPremium")
     private boolean isPremium;
     private LocalDateTime publishedAt;
     private UserDTO user;

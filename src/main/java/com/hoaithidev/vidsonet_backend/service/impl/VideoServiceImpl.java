@@ -158,6 +158,9 @@ public class VideoServiceImpl implements VideoService{
                 throw new VidsonetException(ErrorCode.PREMIUM_CONTENT);
             }
         }
+        if(video.isPremium() && userId == null){
+            throw new VidsonetException(ErrorCode.PREMIUM_CONTENT);
+        }
 
         // Get categories
         List<CategoryDTO> categoryDTOs = videoCategoryRepository.findByVideoId(id).stream()
@@ -176,6 +179,7 @@ public class VideoServiceImpl implements VideoService{
                 currentProgress = progressOpt.get().getCurrentTime();
             }
         }
+
 
         return mapToVideoDTO(video, videoOwner, categoryDTOs, currentProgress);
     }

@@ -1,6 +1,7 @@
 package com.hoaithidev.vidsonet_backend.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,11 +16,16 @@ public class VideoUploadDTO {
     private String title;
     private String description;
     private List<Long> categoryIds;
-    private boolean isPremium;
+    @JsonProperty("isPremium")
+    private String isPremium;
 
     @JsonIgnore  // Để tránh lỗi khi serialize
     private MultipartFile videoFile;
 
     @JsonIgnore  // Để tránh lỗi khi serialize
     private MultipartFile thumbnailFile;
+
+    public boolean isPremium() {
+        return "true".equalsIgnoreCase(isPremium);
+    }
 }

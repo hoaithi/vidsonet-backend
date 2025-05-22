@@ -1,5 +1,6 @@
 package com.hoaithidev.vidsonet_backend.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hoaithidev.vidsonet_backend.enums.EntityType;
 import com.hoaithidev.vidsonet_backend.enums.NotificationType;
 import lombok.AllArgsConstructor;
@@ -16,6 +17,7 @@ public class NotificationDTO {
     private Long id;
     private NotificationType type;
     private LocalDateTime createdAt;
+    @JsonProperty("isRead")
     private boolean isRead = false;
     private String content;
     private Long entityId;

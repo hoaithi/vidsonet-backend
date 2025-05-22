@@ -1,5 +1,6 @@
 package com.hoaithidev.vidsonet_backend.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,7 +20,9 @@ public class CommentDTO {
     private LocalDateTime updatedAt;
     private Long likeCount;
     private Long dislikeCount;
+    @JsonProperty("isPinned")
     private boolean isPinned;
+    @JsonProperty("isHearted")
     private boolean isHearted;
     private LocalDateTime heartedAt;
     private UserDTO user;

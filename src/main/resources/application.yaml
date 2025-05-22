@@ -5,10 +5,10 @@ server:
 
 spring:
   datasource:
-    url: "jdbc:mysql://localhost:3306/vidsonet"
+    url: ${DBMS_CONNECTION:jdbc:mysql://localhost:3306/vidsonet}
     driverClassName: "com.mysql.cj.jdbc.Driver"
     username: root
-    password: root
+    password: 123456
   jpa:
     hibernate:
       ddl-auto: update
@@ -17,7 +17,14 @@ spring:
     multipart:
       max-file-size: 10000MB
       max-request-size: 10000MB
+paypal:
+  client-id: AXGhOWS38swe3N1OXVAHBn7NgN-LO4_bDLgQSiq-sJaqZ6dr4b5s9O081f8hT2kBhz7Lb67dqWvymKOu
+  client-secret: ENw7SI0Zw7QAraH6xxEEDcP8XiTHeXxDW-RoWsh3QVBaSKxmHr6aat9qBEscwqGEyUHNEg_zU0U4j8fR
+  mode: sandbox # sandbox hoặc live
+  success-url: ${app.frontend-url}/membership/success
+  cancel-url: ${app.frontend-url}/membership/cancel
 app:
+  frontend-url: http://localhost:3000
   jwt:
     secret: "YYzrYVGsu1A65dvMxYP1W+d2LcC7fAFTLoa+5kT9rj5dDNL77BPUyEsMKbGNN2G7"
     expiration: 86400000 #ms

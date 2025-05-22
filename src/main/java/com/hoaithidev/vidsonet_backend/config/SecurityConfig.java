@@ -5,6 +5,7 @@ import com.hoaithidev.vidsonet_backend.service.impl.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -12,6 +13,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.HttpBasicConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -46,9 +48,11 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/uploads/**").permitAll()
                         .requestMatchers("/api/categories/**").permitAll()
-                        .requestMatchers("/api/videos/*/view").permitAll()
-                        .requestMatchers("/api/videos").permitAll()
-                        .requestMatchers("/api/videos/*/comments").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/api/videos/**").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/videos/*/view").permitAll()
+
+//                        .requestMatchers("/api/videos/**").permitAll()
+//                        .requestMatchers("/api/videos/*/comments").permitAll()
                         .requestMatchers("/api/search/**").permitAll()
                         .requestMatchers("/api/users/*/channel").permitAll()
                         .anyRequest().authenticated())
