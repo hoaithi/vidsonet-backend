@@ -1,4 +1,4 @@
-package com.hoaithidev.vidsonet_backend.payload.request;
+package com.hoaithidev.vidsonet_backend.dto.user;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

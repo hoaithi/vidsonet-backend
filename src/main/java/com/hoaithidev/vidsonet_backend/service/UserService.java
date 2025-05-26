@@ -1,8 +1,7 @@
 package com.hoaithidev.vidsonet_backend.service;
 
-import com.hoaithidev.vidsonet_backend.dto.UserDTO;
-import com.hoaithidev.vidsonet_backend.model.User;
-import com.hoaithidev.vidsonet_backend.payload.request.UpdateProfileRequest;
+import com.hoaithidev.vidsonet_backend.dto.user.UserDTO;
+import com.hoaithidev.vidsonet_backend.dto.user.UpdateProfileRequest;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;

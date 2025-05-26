@@ -1,9 +1,9 @@
 package com.hoaithidev.vidsonet_backend.service;
 
 
-import com.hoaithidev.vidsonet_backend.dto.PostDTO;
-import com.hoaithidev.vidsonet_backend.payload.request.PostCreateRequest;
-import com.hoaithidev.vidsonet_backend.payload.request.PostUpdateRequest;
+import com.hoaithidev.vidsonet_backend.dto.post.PostDTO;
+import com.hoaithidev.vidsonet_backend.dto.post.PostCreateRequest;
+import com.hoaithidev.vidsonet_backend.dto.post.PostUpdateRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

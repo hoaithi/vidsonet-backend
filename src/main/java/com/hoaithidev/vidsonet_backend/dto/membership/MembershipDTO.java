@@ -1,7 +1,7 @@
 package com.hoaithidev.vidsonet_backend.dto.membership;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.hoaithidev.vidsonet_backend.dto.UserDTO;
+import com.hoaithidev.vidsonet_backend.dto.user.UserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

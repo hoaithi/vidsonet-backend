@@ -3,7 +3,7 @@ package com.hoaithidev.vidsonet_backend.security.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hoaithidev.vidsonet_backend.exception.ErrorCode;
-import com.hoaithidev.vidsonet_backend.payload.response.ApiResponse;
+import com.hoaithidev.vidsonet_backend.dto.user.ApiResponse;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

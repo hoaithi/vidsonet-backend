@@ -1,6 +1,6 @@
 package com.hoaithidev.vidsonet_backend.service;
 
-import com.hoaithidev.vidsonet_backend.dto.NotificationDTO;
+import com.hoaithidev.vidsonet_backend.dto.notification.NotificationDTO;
 import com.hoaithidev.vidsonet_backend.model.*;
 
 import org.springframework.data.domain.Page;

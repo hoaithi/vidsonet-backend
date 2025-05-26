@@ -1,4 +1,4 @@
-package com.hoaithidev.vidsonet_backend.dto;
+package com.hoaithidev.vidsonet_backend.dto.video;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;

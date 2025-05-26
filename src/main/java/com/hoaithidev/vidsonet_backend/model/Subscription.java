@@ -28,5 +28,5 @@ public class Subscription {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "channel_id", nullable = false)
-    private User channel; // Kênh được đăng ký (reference đến User vì User bây giờ bao gồm cả Channel)
+    private User channel; // Kênh được đăng ký
 }

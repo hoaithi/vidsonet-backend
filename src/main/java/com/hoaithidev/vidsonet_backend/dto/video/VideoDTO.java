@@ -1,7 +1,9 @@
-package com.hoaithidev.vidsonet_backend.dto;
+package com.hoaithidev.vidsonet_backend.dto.video;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.hoaithidev.vidsonet_backend.dto.categrory.CategoryDTO;
+import com.hoaithidev.vidsonet_backend.dto.user.UserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

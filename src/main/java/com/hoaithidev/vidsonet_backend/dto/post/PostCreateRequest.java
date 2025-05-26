@@ -1,4 +1,4 @@
-package com.hoaithidev.vidsonet_backend.payload.request;
+package com.hoaithidev.vidsonet_backend.dto.post;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

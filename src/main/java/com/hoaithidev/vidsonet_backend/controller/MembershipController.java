@@ -4,7 +4,7 @@ import com.hoaithidev.vidsonet_backend.dto.membership.MembershipDTO;
 import com.hoaithidev.vidsonet_backend.dto.membership.MembershipTierCreateRequest;
 import com.hoaithidev.vidsonet_backend.dto.membership.MembershipTierDTO;
 import com.hoaithidev.vidsonet_backend.dto.membership.MembershipTierUpdateRequest;
-import com.hoaithidev.vidsonet_backend.payload.response.ApiResponse;
+import com.hoaithidev.vidsonet_backend.dto.user.ApiResponse;
 import com.hoaithidev.vidsonet_backend.service.MembershipService;
 import com.hoaithidev.vidsonet_backend.util.CurrentUser;
 import jakarta.validation.Valid;

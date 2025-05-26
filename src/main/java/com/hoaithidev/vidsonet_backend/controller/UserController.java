@@ -1,9 +1,8 @@
 package com.hoaithidev.vidsonet_backend.controller;
 
-import com.hoaithidev.vidsonet_backend.dto.UserDTO;
-import com.hoaithidev.vidsonet_backend.model.User;
-import com.hoaithidev.vidsonet_backend.payload.request.UpdateProfileRequest;
-import com.hoaithidev.vidsonet_backend.payload.response.ApiResponse;
+import com.hoaithidev.vidsonet_backend.dto.user.UserDTO;
+import com.hoaithidev.vidsonet_backend.dto.user.UpdateProfileRequest;
+import com.hoaithidev.vidsonet_backend.dto.user.ApiResponse;
 import com.hoaithidev.vidsonet_backend.util.CurrentUser;
 import com.hoaithidev.vidsonet_backend.service.UserService;
 import jakarta.validation.Valid;

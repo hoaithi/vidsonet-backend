@@ -1,6 +1,6 @@
 package com.hoaithidev.vidsonet_backend.service;
 
-import com.hoaithidev.vidsonet_backend.dto.CategoryDTO;
+import com.hoaithidev.vidsonet_backend.dto.categrory.CategoryDTO;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;

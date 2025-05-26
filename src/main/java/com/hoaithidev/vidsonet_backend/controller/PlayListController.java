@@ -1,16 +1,13 @@
 package com.hoaithidev.vidsonet_backend.controller;
 
-import com.hoaithidev.vidsonet_backend.dto.VideoDTO;
+import com.hoaithidev.vidsonet_backend.dto.video.VideoDTO;
 import com.hoaithidev.vidsonet_backend.enums.PlaylistType;
-import com.hoaithidev.vidsonet_backend.payload.response.ApiResponse;
-import com.hoaithidev.vidsonet_backend.service.PlayListService;
+import com.hoaithidev.vidsonet_backend.dto.user.ApiResponse;
+import com.hoaithidev.vidsonet_backend.service.PlaylistService;
 import com.hoaithidev.vidsonet_backend.util.CurrentUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PlayListController {
 
-    private final PlayListService playListService;
+    private final PlaylistService playListService;
 
     @GetMapping("/watch-later")
     public ResponseEntity<ApiResponse<List<VideoDTO>>> getWatchLaterVideos(@CurrentUser Long userId) {
@@ -44,5 +41,35 @@ public class PlayListController {
                 .message("Clear history successfully")
                 .build());
     }
+
+    @DeleteMapping("/watch-later/{videoId}")
+    public ResponseEntity<ApiResponse<Void>> removeFromWatchLater(
+            @PathVariable Long videoId,
+            @CurrentUser Long userId) {
+
+        playListService.removeVideoFromWatchLater(userId, videoId);
+
+        return ResponseEntity.ok(ApiResponse.<Void>builder()
+                .message("Video removed from Watch Later successfully")
+                .build());
+    }
+
+    /**
+     * Remove video from History playlist
+     */
+    @DeleteMapping("/history/{videoId}")
+    public ResponseEntity<ApiResponse<Void>> removeFromHistory(
+            @PathVariable Long videoId,
+            @CurrentUser Long userId) {
+
+        playListService.removeVideoFromHistory(userId, videoId);
+
+        return ResponseEntity.ok(ApiResponse.<Void>builder()
+                .message("Video removed from History successfully")
+                .build());
+    }
+
+
+
 
 }

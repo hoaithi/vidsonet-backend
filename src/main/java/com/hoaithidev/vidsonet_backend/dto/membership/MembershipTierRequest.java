@@ -1,4 +1,4 @@
-package com.hoaithidev.vidsonet_backend.payload.request;
+package com.hoaithidev.vidsonet_backend.dto.membership;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;

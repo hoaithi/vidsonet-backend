@@ -1,15 +1,14 @@
 package com.hoaithidev.vidsonet_backend.service.impl;
 
-import com.hoaithidev.vidsonet_backend.dto.PostCommentDTO;
-import com.hoaithidev.vidsonet_backend.dto.UserDTO;
-import com.hoaithidev.vidsonet_backend.enums.NotificationType;
+import com.hoaithidev.vidsonet_backend.dto.postcomment.PostCommentDTO;
+import com.hoaithidev.vidsonet_backend.dto.user.UserDTO;
 import com.hoaithidev.vidsonet_backend.exception.BadRequestException;
 import com.hoaithidev.vidsonet_backend.exception.ResourceNotFoundException;
 import com.hoaithidev.vidsonet_backend.model.Post;
 import com.hoaithidev.vidsonet_backend.model.PostComment;
 import com.hoaithidev.vidsonet_backend.model.User;
-import com.hoaithidev.vidsonet_backend.payload.request.PostCommentCreateRequest;
-import com.hoaithidev.vidsonet_backend.payload.request.PostCommentUpdateRequest;
+import com.hoaithidev.vidsonet_backend.dto.postcomment.PostCommentCreateRequest;
+import com.hoaithidev.vidsonet_backend.dto.postcomment.PostCommentUpdateRequest;
 import com.hoaithidev.vidsonet_backend.repository.PostCommentRepository;
 import com.hoaithidev.vidsonet_backend.repository.PostRepository;
 import com.hoaithidev.vidsonet_backend.repository.UserRepository;

@@ -1,7 +1,7 @@
 package com.hoaithidev.vidsonet_backend.controller;
 
-import com.hoaithidev.vidsonet_backend.dto.NotificationDTO;
-import com.hoaithidev.vidsonet_backend.payload.response.ApiResponse;
+import com.hoaithidev.vidsonet_backend.dto.notification.NotificationDTO;
+import com.hoaithidev.vidsonet_backend.dto.user.ApiResponse;
 import com.hoaithidev.vidsonet_backend.service.NotificationService;
 import com.hoaithidev.vidsonet_backend.util.CurrentUser;
 import lombok.RequiredArgsConstructor;

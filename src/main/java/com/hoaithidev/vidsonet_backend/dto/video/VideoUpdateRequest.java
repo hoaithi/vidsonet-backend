@@ -1,5 +1,4 @@
-package com.hoaithidev.vidsonet_backend.payload.request;
-
+package com.hoaithidev.vidsonet_backend.dto.video;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,9 +8,10 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class VideoUploadRequest {
+public class VideoUpdateRequest {
     private String title;
     private String description;
+    private String thumbnailUrl;
     private List<Long> categoryIds;
-    private boolean isPremium;
+    private Boolean isPremium;
 }

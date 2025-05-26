@@ -1,6 +1,6 @@
 package com.hoaithidev.vidsonet_backend.exception;
 
-import com.hoaithidev.vidsonet_backend.payload.response.ApiResponse;
+import com.hoaithidev.vidsonet_backend.dto.user.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.connector.ClientAbortException;
 import org.hibernate.exception.ConstraintViolationException;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.util.HashMap;

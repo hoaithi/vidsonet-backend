@@ -1,9 +1,9 @@
 package com.hoaithidev.vidsonet_backend.controller;
 
-import com.hoaithidev.vidsonet_backend.payload.request.LoginRequest;
-import com.hoaithidev.vidsonet_backend.payload.request.RegisterRequest;
-import com.hoaithidev.vidsonet_backend.payload.response.ApiResponse;
-import com.hoaithidev.vidsonet_backend.payload.response.AuthResponse;
+import com.hoaithidev.vidsonet_backend.dto.user.LoginRequest;
+import com.hoaithidev.vidsonet_backend.dto.user.RegisterRequest;
+import com.hoaithidev.vidsonet_backend.dto.user.ApiResponse;
+import com.hoaithidev.vidsonet_backend.dto.user.AuthResponse;
 import com.hoaithidev.vidsonet_backend.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

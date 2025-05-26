@@ -1,16 +1,14 @@
 package com.hoaithidev.vidsonet_backend.service;
 
-import com.hoaithidev.vidsonet_backend.dto.VideoDTO;
-import com.hoaithidev.vidsonet_backend.dto.VideoUploadDTO;
-import com.hoaithidev.vidsonet_backend.payload.request.VideoProgressUpdateRequest;
-import com.hoaithidev.vidsonet_backend.payload.request.VideoSearchRequest;
-import com.hoaithidev.vidsonet_backend.payload.request.VideoUpdateRequest;
-import com.hoaithidev.vidsonet_backend.payload.request.VideoUploadRequest;
+import com.hoaithidev.vidsonet_backend.dto.video.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface VideoService {
+    @Transactional
+    VideoUserReaction getUserReaction(long videoId, long userId);
+
     VideoDTO uploadVideo(Long userId, VideoUploadDTO uploadDTO);
     VideoDTO getVideoById(Long id, Long userId);
     VideoDTO updateVideo(Long id, VideoUpdateRequest request);

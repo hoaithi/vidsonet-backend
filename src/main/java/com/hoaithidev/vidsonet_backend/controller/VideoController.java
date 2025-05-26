@@ -1,10 +1,9 @@
 package com.hoaithidev.vidsonet_backend.controller;
 
-import com.hoaithidev.vidsonet_backend.dto.CommentDTO;
-import com.hoaithidev.vidsonet_backend.dto.VideoDTO;
-import com.hoaithidev.vidsonet_backend.dto.VideoUploadDTO;
-import com.hoaithidev.vidsonet_backend.payload.request.*;
-import com.hoaithidev.vidsonet_backend.payload.response.ApiResponse;
+import com.hoaithidev.vidsonet_backend.dto.comment.CommentCreateRequest;
+import com.hoaithidev.vidsonet_backend.dto.comment.CommentDTO;
+import com.hoaithidev.vidsonet_backend.dto.video.*;
+import com.hoaithidev.vidsonet_backend.dto.user.ApiResponse;
 import com.hoaithidev.vidsonet_backend.service.CommentService;
 import com.hoaithidev.vidsonet_backend.service.VideoService;
 import com.hoaithidev.vidsonet_backend.util.CurrentUser;
@@ -178,6 +177,7 @@ public class VideoController {
                 .build());
     }
 
+
     @GetMapping("/{id}/comments")
     public ResponseEntity<ApiResponse<List<CommentDTO>>> getVideoComments(@PathVariable Long id) {
         List<CommentDTO> comments = commentService.getCommentsByVideoId(id);
@@ -207,23 +207,37 @@ public class VideoController {
                         .build());
     }
 
-//    @GetMapping("/watch-later")
-//    @PreAuthorize("hasRole('USER')")
-//    public ResponseEntity<ApiResponse<Page<VideoDTO>>> getWatchLaterVideos(
-//            @CurrentUser Long userId,
-//            @RequestParam(defaultValue = "0") int page,
-//            @RequestParam(defaultValue = "12") int size,
-//            @RequestParam(defaultValue = "addedAt") String sortBy,
-//            @RequestParam(defaultValue = "desc") String sortDir) {
-//
-//        Sort.Direction direction = sortDir.equalsIgnoreCase("asc") ? Sort.Direction.ASC : Sort.Direction.DESC;
-//        Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sortBy));
-//
-//        Page<VideoDTO> videos = videoService.getWatchLaterVideos(userId, pageable);
-//
-//        return ResponseEntity.ok(ApiResponse.<Page<VideoDTO>>builder()
-//                .message("Watch later videos retrieved successfully")
-//                .data(videos)
-//                .build());
-//    }
+    @GetMapping("/watch-later")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<ApiResponse<Page<VideoDTO>>> getWatchLaterVideos(
+            @CurrentUser Long userId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "12") int size,
+            @RequestParam(defaultValue = "addedAt") String sortBy,
+            @RequestParam(defaultValue = "desc") String sortDir) {
+
+        Sort.Direction direction = sortDir.equalsIgnoreCase("asc") ? Sort.Direction.ASC : Sort.Direction.DESC;
+        Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sortBy));
+
+        Page<VideoDTO> videos = videoService.getWatchLaterVideos(userId, pageable);
+
+        return ResponseEntity.ok(ApiResponse.<Page<VideoDTO>>builder()
+                .message("Watch later videos retrieved successfully")
+                .data(videos)
+                .build());
+    }
+
+    @GetMapping("/{id}/reaction")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<ApiResponse<VideoUserReaction>> getVideoUserReaction(
+            @PathVariable long id,
+            @CurrentUser Long userId
+    ){
+        VideoUserReaction videoUserReaction = videoService.getUserReaction(id,userId);
+        return ResponseEntity.ok(ApiResponse.<VideoUserReaction>builder()
+                .message("Video user reaction retrieved successfully")
+                .data(videoUserReaction)
+                .build());
+    }
+
 }

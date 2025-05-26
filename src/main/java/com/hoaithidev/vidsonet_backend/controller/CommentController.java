@@ -1,9 +1,9 @@
 package com.hoaithidev.vidsonet_backend.controller;
 
-import com.hoaithidev.vidsonet_backend.dto.CommentDTO;
-import com.hoaithidev.vidsonet_backend.payload.request.CommentCreateRequest;
-import com.hoaithidev.vidsonet_backend.payload.request.CommentUpdateRequest;
-import com.hoaithidev.vidsonet_backend.payload.response.ApiResponse;
+import com.hoaithidev.vidsonet_backend.dto.comment.CommentDTO;
+import com.hoaithidev.vidsonet_backend.dto.comment.CommentCreateRequest;
+import com.hoaithidev.vidsonet_backend.dto.comment.CommentUpdateRequest;
+import com.hoaithidev.vidsonet_backend.dto.user.ApiResponse;
 import com.hoaithidev.vidsonet_backend.service.CommentService;
 import com.hoaithidev.vidsonet_backend.util.CurrentUser;
 import jakarta.validation.Valid;
@@ -51,10 +51,6 @@ public class CommentController {
             @Valid @RequestBody CommentCreateRequest request,
             @CurrentUser Long userId) {
 
-        // Set the parent id from the path
-        log.error("Request: {}", request.toString());
-        log.error("User ID: {}", userId);
-        log.error("Parent ID: {}", id);
         request.setParentId(id);
 
         CommentDTO reply = commentService.createComment(userId, request);

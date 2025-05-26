@@ -1,7 +1,7 @@
 package com.hoaithidev.vidsonet_backend.service.impl;
 
-import com.hoaithidev.vidsonet_backend.dto.SubscriptionDTO;
-import com.hoaithidev.vidsonet_backend.dto.UserDTO;
+import com.hoaithidev.vidsonet_backend.dto.user.SubscriptionDTO;
+import com.hoaithidev.vidsonet_backend.dto.user.UserDTO;
 //import com.hoaithidev.vidsonet_backend.exception.BadRequestException;
 import com.hoaithidev.vidsonet_backend.exception.DuplicateResourceException;
 import com.hoaithidev.vidsonet_backend.exception.ErrorCode;
@@ -12,6 +12,7 @@ import com.hoaithidev.vidsonet_backend.model.User;
 import com.hoaithidev.vidsonet_backend.repository.NotificationRepository;
 import com.hoaithidev.vidsonet_backend.repository.SubscriptionRepository;
 import com.hoaithidev.vidsonet_backend.repository.UserRepository;
+import com.hoaithidev.vidsonet_backend.service.NotificationService;
 import com.hoaithidev.vidsonet_backend.service.SubscriptionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
     private final SubscriptionRepository subscriptionRepository;
     private final UserRepository userRepository;
-    private final NotificationRepository notificationRepository;
+    private final NotificationService notificationService;
 
     @Override
     @Transactional
@@ -65,7 +66,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         Subscription savedSubscription = subscriptionRepository.save(subscription);
 
         // Tạo thông báo cho chủ kênh
-        createSubscriptionNotification(user, channel);
+        notificationService.createSubscriptionNotification(user, channel);
 
         return mapToSubscriptionDTO(savedSubscription);
     }
@@ -117,9 +118,6 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         return subscriptionRepository.existsByUserIdAndChannelId(userId, channelId);
     }
 
-    private void createSubscriptionNotification(User subscriber, User channel) {
-        // TODO: Implement notification creation
-    }
 
     private SubscriptionDTO mapToSubscriptionDTO(Subscription subscription) {
         UserDTO channelDTO = UserDTO.builder()

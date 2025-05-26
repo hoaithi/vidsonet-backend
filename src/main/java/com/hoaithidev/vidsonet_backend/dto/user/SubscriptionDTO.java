@@ -1,4 +1,4 @@
-package com.hoaithidev.vidsonet_backend.dto;
+package com.hoaithidev.vidsonet_backend.dto.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

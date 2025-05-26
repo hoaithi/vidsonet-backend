@@ -1,9 +1,9 @@
 package com.hoaithidev.vidsonet_backend.controller;
 
-import com.hoaithidev.vidsonet_backend.dto.PostCommentDTO;
-import com.hoaithidev.vidsonet_backend.payload.request.PostCommentCreateRequest;
-import com.hoaithidev.vidsonet_backend.payload.request.PostCommentUpdateRequest;
-import com.hoaithidev.vidsonet_backend.payload.response.ApiResponse;
+import com.hoaithidev.vidsonet_backend.dto.postcomment.PostCommentDTO;
+import com.hoaithidev.vidsonet_backend.dto.postcomment.PostCommentCreateRequest;
+import com.hoaithidev.vidsonet_backend.dto.postcomment.PostCommentUpdateRequest;
+import com.hoaithidev.vidsonet_backend.dto.user.ApiResponse;
 import com.hoaithidev.vidsonet_backend.service.PostCommentService;
 import com.hoaithidev.vidsonet_backend.util.CurrentUser;
 import jakarta.validation.Valid;

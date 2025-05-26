@@ -1,8 +1,8 @@
 package com.hoaithidev.vidsonet_backend.service;
 
-import com.hoaithidev.vidsonet_backend.dto.CommentDTO;
-import com.hoaithidev.vidsonet_backend.payload.request.CommentCreateRequest;
-import com.hoaithidev.vidsonet_backend.payload.request.CommentUpdateRequest;
+import com.hoaithidev.vidsonet_backend.dto.comment.CommentDTO;
+import com.hoaithidev.vidsonet_backend.dto.comment.CommentCreateRequest;
+import com.hoaithidev.vidsonet_backend.dto.comment.CommentUpdateRequest;
 
 import java.util.List;
 

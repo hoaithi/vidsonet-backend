@@ -1,19 +1,20 @@
 package com.hoaithidev.vidsonet_backend.service.impl;
 
-import com.hoaithidev.vidsonet_backend.dto.CommentDTO;
-import com.hoaithidev.vidsonet_backend.dto.UserDTO;
+import com.hoaithidev.vidsonet_backend.dto.comment.CommentDTO;
+import com.hoaithidev.vidsonet_backend.dto.user.UserDTO;
 import com.hoaithidev.vidsonet_backend.exception.ErrorCode;
 import com.hoaithidev.vidsonet_backend.exception.ResourceNotFoundException;
 import com.hoaithidev.vidsonet_backend.exception.VidsonetException;
 import com.hoaithidev.vidsonet_backend.model.Comment;
 import com.hoaithidev.vidsonet_backend.model.User;
 import com.hoaithidev.vidsonet_backend.model.Video;
-import com.hoaithidev.vidsonet_backend.payload.request.CommentCreateRequest;
-import com.hoaithidev.vidsonet_backend.payload.request.CommentUpdateRequest;
+import com.hoaithidev.vidsonet_backend.dto.comment.CommentCreateRequest;
+import com.hoaithidev.vidsonet_backend.dto.comment.CommentUpdateRequest;
 import com.hoaithidev.vidsonet_backend.repository.CommentRepository;
 import com.hoaithidev.vidsonet_backend.repository.UserRepository;
 import com.hoaithidev.vidsonet_backend.repository.VideoRepository;
 import com.hoaithidev.vidsonet_backend.service.CommentService;
+import com.hoaithidev.vidsonet_backend.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -31,14 +32,11 @@ public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
     private final UserRepository userRepository;
     private final VideoRepository videoRepository;
+    private final NotificationService notificationService;
 
     @Override
     @Transactional
     public CommentDTO createComment(Long userId, CommentCreateRequest request) {
-
-        log.error(" videoId: {}", request.getVideoId());
-        log.error(" parentId: {}", request.getParentId());
-
 
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + userId));
@@ -73,6 +71,7 @@ public class CommentServiceImpl implements CommentService {
         }
 
         Comment savedComment = commentRepository.save(comment);
+        notificationService.createCommentNotification(savedComment);
 
         return mapToCommentDTO(savedComment);
     }

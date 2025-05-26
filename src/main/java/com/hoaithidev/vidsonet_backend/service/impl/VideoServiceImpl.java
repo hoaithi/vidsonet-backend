@@ -1,18 +1,14 @@
 package com.hoaithidev.vidsonet_backend.service.impl;
 
-import com.hoaithidev.vidsonet_backend.dto.CategoryDTO;
-import com.hoaithidev.vidsonet_backend.dto.UserDTO;
-import com.hoaithidev.vidsonet_backend.dto.VideoDTO;
-import com.hoaithidev.vidsonet_backend.dto.VideoUploadDTO;
+import com.hoaithidev.vidsonet_backend.dto.categrory.CategoryDTO;
+import com.hoaithidev.vidsonet_backend.dto.user.UserDTO;
+import com.hoaithidev.vidsonet_backend.dto.video.*;
 import com.hoaithidev.vidsonet_backend.enums.PlaylistType;
 import com.hoaithidev.vidsonet_backend.enums.ReactionType;
 import com.hoaithidev.vidsonet_backend.exception.ErrorCode;
 import com.hoaithidev.vidsonet_backend.exception.ResourceNotFoundException;
 import com.hoaithidev.vidsonet_backend.exception.VidsonetException;
 import com.hoaithidev.vidsonet_backend.model.*;
-import com.hoaithidev.vidsonet_backend.payload.request.VideoProgressUpdateRequest;
-import com.hoaithidev.vidsonet_backend.payload.request.VideoSearchRequest;
-import com.hoaithidev.vidsonet_backend.payload.request.VideoUpdateRequest;
 import com.hoaithidev.vidsonet_backend.repository.*;
 import com.hoaithidev.vidsonet_backend.service.FileStorageService;
 import com.hoaithidev.vidsonet_backend.service.NotificationService;
@@ -25,10 +21,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +45,22 @@ public class VideoServiceImpl implements VideoService{
     private final MembershipRepository membershipRepository;
     private final FileStorageService fileStorageService;
     private final NotificationService notificationService;
+
+    @Override
+    public VideoUserReaction getUserReaction(long videoId, long userId) {
+        Optional<VideoReaction> videoReaction = videoReactionRepository.findByUserIdAndVideoId(userId, videoId);
+        if (videoReaction.isPresent()) {
+            return VideoUserReaction.builder()
+                    .hasReacted(true)
+                    .reactionType(videoReaction.get().getReactionType())
+                    .createdAt(videoReaction.get().getCreatedAt())
+                    .build();
+        }else{
+            return VideoUserReaction.builder()
+                    .hasReacted(false)
+                    .build();
+        }
+    }
 
 
     @Override
@@ -384,16 +394,18 @@ public class VideoServiceImpl implements VideoService{
 
             // If already liked, do nothing
             if (reaction.getReactionType() == ReactionType.LIKE) {
-                throw new VidsonetException(ErrorCode.DUPLICATE_RESOURCE, "You have already liked this video");
+                videoReactionRepository.delete(reaction);
+                video.setLikeCount(video.getLikeCount() - 1);
+            }else{
+                // If disliked, change to like and update counts
+                reaction.setReactionType(ReactionType.LIKE);
+                reaction.setCreatedAt(LocalDateTime.now());
+                videoReactionRepository.save(reaction);
+
+                video.setLikeCount(video.getLikeCount() + 1);
+                video.setDislikeCount(video.getDislikeCount() - 1);
             }
 
-            // If disliked, change to like and update counts
-            reaction.setReactionType(ReactionType.LIKE);
-            reaction.setCreatedAt(LocalDateTime.now());
-            videoReactionRepository.save(reaction);
-
-            video.setLikeCount(video.getLikeCount() + 1);
-            video.setDislikeCount(video.getDislikeCount() - 1);
         } else {
             // Create new like reaction
             VideoReaction reaction = VideoReaction.builder()
@@ -439,16 +451,19 @@ public class VideoServiceImpl implements VideoService{
 
             // If already disliked, do nothing
             if (reaction.getReactionType() == ReactionType.DISLIKE) {
-                throw new VidsonetException(ErrorCode.DUPLICATE_RESOURCE, "You have already disliked this video");
+                videoReactionRepository.delete(reaction);
+                video.setDislikeCount(video.getDislikeCount() - 1);
+            }else{
+                // If liked, change to dislike and update counts
+                reaction.setReactionType(ReactionType.DISLIKE);
+                reaction.setCreatedAt(LocalDateTime.now());
+                videoReactionRepository.save(reaction);
+
+                video.setLikeCount(video.getLikeCount() - 1);
+                video.setDislikeCount(video.getDislikeCount() + 1);
             }
 
-            // If liked, change to dislike and update counts
-            reaction.setReactionType(ReactionType.DISLIKE);
-            reaction.setCreatedAt(LocalDateTime.now());
-            videoReactionRepository.save(reaction);
 
-            video.setLikeCount(video.getLikeCount() - 1);
-            video.setDislikeCount(video.getDislikeCount() + 1);
         } else {
             // Create new dislike reaction
             VideoReaction reaction = VideoReaction.builder()
@@ -488,18 +503,15 @@ public class VideoServiceImpl implements VideoService{
                 .orElseThrow(() -> new ResourceNotFoundException("Watch later playlist not found"));
 
         // Check if video is already in the playlist
-        if (videoPlaylistRepository.existsByPlaylistIdAndVideoId(watchLaterPlaylist.getId(), id)) {
-            throw new VidsonetException(ErrorCode.VIDEO_ALREADY_IN_PLAYLIST);
+        if (!videoPlaylistRepository.existsByPlaylistIdAndVideoId(watchLaterPlaylist.getId(), id)) {
+            // Add video to watch later playlist
+            VideoPlaylist videoPlaylist = VideoPlaylist.builder()
+                    .video(video)
+                    .playlist(watchLaterPlaylist)
+                    .addedAt(LocalDateTime.now())
+                    .build();
+            videoPlaylistRepository.save(videoPlaylist);
         }
-
-        // Add video to watch later playlist
-        VideoPlaylist videoPlaylist = VideoPlaylist.builder()
-                .video(video)
-                .playlist(watchLaterPlaylist)
-                .addedAt(LocalDateTime.now())
-                .build();
-
-        videoPlaylistRepository.save(videoPlaylist);
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.hoaithidev.vidsonet_backend.service.impl;
 
-import com.hoaithidev.vidsonet_backend.dto.NotificationDTO;
-import com.hoaithidev.vidsonet_backend.dto.UserDTO;
+import com.hoaithidev.vidsonet_backend.dto.notification.NotificationDTO;
+import com.hoaithidev.vidsonet_backend.dto.user.UserDTO;
 import com.hoaithidev.vidsonet_backend.enums.EntityType;
 import com.hoaithidev.vidsonet_backend.enums.NotificationType;
 import com.hoaithidev.vidsonet_backend.exception.ResourceNotFoundException;

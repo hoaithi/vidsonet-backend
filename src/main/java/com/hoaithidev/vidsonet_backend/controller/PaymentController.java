@@ -3,7 +3,7 @@ package com.hoaithidev.vidsonet_backend.controller;
 import com.hoaithidev.vidsonet_backend.dto.payment.CreatePaymentResponse;
 import com.hoaithidev.vidsonet_backend.dto.payment.PaymentCaptureRequest;
 import com.hoaithidev.vidsonet_backend.dto.payment.PaymentCaptureResponse;
-import com.hoaithidev.vidsonet_backend.payload.response.ApiResponse;
+import com.hoaithidev.vidsonet_backend.dto.user.ApiResponse;
 import com.hoaithidev.vidsonet_backend.service.PaymentService;
 import com.hoaithidev.vidsonet_backend.util.CurrentUser;
 import lombok.RequiredArgsConstructor;

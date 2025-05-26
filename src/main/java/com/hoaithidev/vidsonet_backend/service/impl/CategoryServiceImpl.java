@@ -1,6 +1,6 @@
 package com.hoaithidev.vidsonet_backend.service.impl;
 
-import com.hoaithidev.vidsonet_backend.dto.CategoryDTO;
+import com.hoaithidev.vidsonet_backend.dto.categrory.CategoryDTO;
 import com.hoaithidev.vidsonet_backend.exception.ResourceNotFoundException;
 import com.hoaithidev.vidsonet_backend.model.Category;
 import com.hoaithidev.vidsonet_backend.repository.CategoryRepository;

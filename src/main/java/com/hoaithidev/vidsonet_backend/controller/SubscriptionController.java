@@ -1,8 +1,8 @@
 package com.hoaithidev.vidsonet_backend.controller;
 
 
-import com.hoaithidev.vidsonet_backend.dto.SubscriptionDTO;
-import com.hoaithidev.vidsonet_backend.payload.response.ApiResponse;
+import com.hoaithidev.vidsonet_backend.dto.user.SubscriptionDTO;
+import com.hoaithidev.vidsonet_backend.dto.user.ApiResponse;
 import com.hoaithidev.vidsonet_backend.service.SubscriptionService;
 import com.hoaithidev.vidsonet_backend.util.CurrentUser;
 import lombok.RequiredArgsConstructor;

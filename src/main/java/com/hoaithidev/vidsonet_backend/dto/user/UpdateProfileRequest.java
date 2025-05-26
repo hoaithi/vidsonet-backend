@@ -1,7 +1,6 @@
-package com.hoaithidev.vidsonet_backend.payload.request;
+package com.hoaithidev.vidsonet_backend.dto.user;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;

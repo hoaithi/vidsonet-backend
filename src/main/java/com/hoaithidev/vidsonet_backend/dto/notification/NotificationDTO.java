@@ -1,6 +1,7 @@
-package com.hoaithidev.vidsonet_backend.dto;
+package com.hoaithidev.vidsonet_backend.dto.notification;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.hoaithidev.vidsonet_backend.dto.user.UserDTO;
 import com.hoaithidev.vidsonet_backend.enums.EntityType;
 import com.hoaithidev.vidsonet_backend.enums.NotificationType;
 import lombok.AllArgsConstructor;

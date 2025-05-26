@@ -1,4 +1,4 @@
-package com.hoaithidev.vidsonet_backend.payload.request;
+package com.hoaithidev.vidsonet_backend.dto.video;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,6 +1,6 @@
 package com.hoaithidev.vidsonet_backend.service.impl;
 
-import com.hoaithidev.vidsonet_backend.dto.UserDTO;
+import com.hoaithidev.vidsonet_backend.dto.user.UserDTO;
 import com.hoaithidev.vidsonet_backend.dto.membership.MembershipDTO;
 import com.hoaithidev.vidsonet_backend.dto.membership.MembershipTierCreateRequest;
 import com.hoaithidev.vidsonet_backend.dto.membership.MembershipTierDTO;

@@ -1,8 +1,8 @@
 package com.hoaithidev.vidsonet_backend.service;
 
-import com.hoaithidev.vidsonet_backend.payload.request.LoginRequest;
-import com.hoaithidev.vidsonet_backend.payload.request.RegisterRequest;
-import com.hoaithidev.vidsonet_backend.payload.response.AuthResponse;
+import com.hoaithidev.vidsonet_backend.dto.user.LoginRequest;
+import com.hoaithidev.vidsonet_backend.dto.user.RegisterRequest;
+import com.hoaithidev.vidsonet_backend.dto.user.AuthResponse;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface AuthService {

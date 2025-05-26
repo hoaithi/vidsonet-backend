@@ -1,6 +1,6 @@
 package com.hoaithidev.vidsonet_backend.service;
 
-import com.hoaithidev.vidsonet_backend.dto.SubscriptionDTO;
+import com.hoaithidev.vidsonet_backend.dto.user.SubscriptionDTO;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
