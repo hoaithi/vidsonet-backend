@@ -33,7 +33,6 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<AuthResponse>> login(@Valid @RequestBody LoginRequest request) {
         AuthResponse authResponse = authService.login(request);
-        log.error("Login successful: {}", authResponse);
         return ResponseEntity.ok(ApiResponse.<AuthResponse>builder()
                 .message("Login successful")
                 .data(authResponse)

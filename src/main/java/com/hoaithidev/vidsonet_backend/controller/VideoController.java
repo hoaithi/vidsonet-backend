@@ -36,9 +36,7 @@ public class VideoController {
     public ResponseEntity<ApiResponse<VideoDTO>> uploadVideo(
             @ModelAttribute VideoUploadDTO uploadDTO,
             @CurrentUser Long userId) {
-        log.info("Uploading video");
-        log.info("UploadDTO: {}", uploadDTO.getIsPremium());
-
+        
         VideoDTO uploadedVideo = videoService.uploadVideo(userId, uploadDTO);
 
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -96,7 +94,12 @@ public class VideoController {
             @RequestParam(defaultValue = "publishedAt") String sortBy,
             @RequestParam(defaultValue = "desc") String sortDir) {
 
-        VideoSearchRequest searchRequest = new VideoSearchRequest(keyword, categoryId, userId, isPremium);
+        VideoSearchRequest searchRequest = VideoSearchRequest.builder()
+                .keyword(keyword)
+                .categoryId(categoryId)
+                .userId(userId)
+                .isPremium(isPremium)
+                .build();
 
         Sort.Direction direction = sortDir.equalsIgnoreCase("asc") ? Sort.Direction.ASC : Sort.Direction.DESC;
         Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sortBy));

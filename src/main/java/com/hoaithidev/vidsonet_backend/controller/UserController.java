@@ -59,7 +59,6 @@ public class UserController {
 
     @GetMapping("/me")
     public ResponseEntity<ApiResponse<UserDTO>> getCurrentUser(@CurrentUser Long userId) {
-        log.info("Current user id: {}", userId);
         UserDTO userDTO = userService.getUserById(userId);
         return ResponseEntity.ok(ApiResponse.<UserDTO>builder()
                 .message("Current user retrieved successfully")

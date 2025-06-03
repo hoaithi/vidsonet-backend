@@ -27,10 +27,14 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(VidsonetException.class)
     public ResponseEntity<ApiResponse<Object>> handleVidsonetException(VidsonetException ex) {
         ErrorCode errorCode = ex.getErrorCode();
-        ApiResponse<Object> response = ApiResponse.builder()
+        ApiResponse.ApiResponseBuilder<Object> responseBuilder = ApiResponse.builder()
                 .code(errorCode.getCode())
-                .message(ex.getMessage())
-                .build();
+                .message(ex.getMessage());
+        // Add error details if available
+        if (ex.getErrorDetails() != null && !ex.getErrorDetails().isEmpty()) {
+            responseBuilder.data(ex.getErrorDetails());
+        }
+        ApiResponse<Object> response = responseBuilder.build();
 
         return ResponseEntity.status(errorCode.getStatusCode()).body(response);
     }

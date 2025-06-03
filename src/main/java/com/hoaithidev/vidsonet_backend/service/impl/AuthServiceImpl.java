@@ -97,31 +97,7 @@ public class AuthServiceImpl implements AuthService {
                 .build());
     }
 
-//    @Override
-//    public AuthResponse login(LoginRequest request) {
-//        Authentication authentication = authenticationManager.authenticate(
-//                new UsernamePasswordAuthenticationToken(
-//                        request.getUsernameOrEmail(),
-//                        request.getPassword()
-//                )
-//        );
-//
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
-//
-//        User user = userRepository.findByUsernameOrEmail(request.getUsernameOrEmail(), request.getUsernameOrEmail())
-//                .orElseThrow(() -> new VidsonetException(ErrorCode.USER_NOT_FOUND));
-//
-//        String accessToken = tokenProvider.generateAccessToken(user);
-//        String refreshToken = tokenProvider.generateRefreshToken(user);
-//
-//        return AuthResponse.builder()
-//                .accessToken(accessToken)
-//                .refreshToken(refreshToken)
-//                .tokenType("Bearer")
-//                .userId(user.getId())
-//                .username(user.getUsername())
-//                .build();
-//    }
+
 
     @Override
     public AuthResponse login(LoginRequest request) {

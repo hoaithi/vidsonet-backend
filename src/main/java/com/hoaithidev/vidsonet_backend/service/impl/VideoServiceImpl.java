@@ -24,9 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -165,11 +163,18 @@ public class VideoServiceImpl implements VideoService{
                     userId, videoOwner.getId(), true);
 
             if (!hasMembership) {
-                throw new VidsonetException(ErrorCode.PREMIUM_CONTENT);
+                Map<String, Object> errorDetails = new HashMap<>();
+                errorDetails.put("channelId", videoOwner.getId());
+
+                throw new VidsonetException(ErrorCode.PREMIUM_CONTENT, "This is premium content", errorDetails);
             }
         }
         if(video.isPremium() && userId == null){
-            throw new VidsonetException(ErrorCode.PREMIUM_CONTENT);
+            // For non-authenticated users
+            Map<String, Object> errorDetails = new HashMap<>();
+            errorDetails.put("channelId", videoOwner.getId());
+
+            throw new VidsonetException(ErrorCode.PREMIUM_CONTENT, "This is premium content", errorDetails);
         }
 
         // Get categories
